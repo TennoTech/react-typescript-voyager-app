@@ -1,11 +1,14 @@
+import Header from "./components/Header";
 import StoreInfo from "./components/StoreInfo";
+import Footer from "./components/Footer";
 import "./App.css";
 
 function App() {
   return (
     <>
-      <h1>Some Text</h1>
+      <Header />
       <StoreInfo />
+      <Footer />
     </>
   );
 }

@@ -71,14 +71,14 @@ const StoreInfo = (): JSX.Element => {
 
     useEffect((): void => {
         // switching location every 5 sec
-        timer.current = setTimeout(transition, 5000);
+        timer.current = setTimeout(transition, 1000000);
 
     }, [locationIndex]);
 
 
     return (
         <LoadScript
-            googleMapsApiKey={`${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`}
+            googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY || ''}
             onLoad={createOffsetSize}
         >
             <GoogleMap
