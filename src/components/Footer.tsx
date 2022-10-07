@@ -21,7 +21,7 @@ const Footer = () => {
                                 <a href="https://github.com/TennoTech" target="_blank" className="fab fa-github"></a>
                             </li>
                             <li className="icon">
-                                <a href="#" className="fas fa-envelope"></a>
+                                <a href="mailto:RomanRamsey2001@gmail.com" className="fas fa-envelope" target="_blank"></a>
                             </li>
                             <li className="icon">
                                 <a href="https://www.linkedin.com/in/roman-ramsey/" target="_blank" className="fab fa-linkedin"></a>
