@@ -1,39 +1,27 @@
-import { memo } from "react"
-import { GoogleMap, LoadScript, MarkerF, InfoWindowF } from "@react-google-maps/api";
+import { MarkerF } from "@react-google-maps/api";
 
-const StoreMarker = (): JSX.Element => {
-
-    return (<div></div>)
-    //         <div key={key}>
-    //             <MarkerF
-    //                 position={i.location}
-    //                 label={{
-    //                     color: "white",
-    //                     fontFamily: "sans-serif",
-    //                     fontSize: "15px",
-    //                     fontWeight: "100",
-    //                     text: (key + 1).toString()
-    //                 }}
-    //                 onClick={() => onSelect(i)}
-    //             />
-    //         </div>
-    //     )
-    // positions?.map((i, key) => (
-    //     <div key={key}>
-    //         <MarkerF
-    //             position={i.location}
-    //             label={{
-    //                 color: "white",
-    //                 fontFamily: "sans-serif",
-    //                 fontSize: "15px",
-    //                 fontWeight: "100",
-    //                 text: (key + 1).toString(),
-    //             }}
-    //             onClick={() => onSelect(i)}
-    //         />
-    //     </div>
-    // ))
+interface StoreMarkerProps {
+    data: any
 }
 
+const StoreMarker: React.FC<StoreMarkerProps> = ({ data }) => {
+    const { info, key, onSelect } = data;
 
-export default memo(StoreMarker);
+    return (
+        <div key={key}>
+            <MarkerF
+                position={info.location}
+                label={{
+                    color: "white",
+                    fontFamily: "sans-serif",
+                    fontSize: "15px",
+                    fontWeight: "100",
+                    text: (key + 1).toString()
+                }}
+                onClick={() => onSelect(info)}
+            />
+        </div>
+    );
+}
+
+export default StoreMarker;

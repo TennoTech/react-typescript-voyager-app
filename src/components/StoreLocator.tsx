@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState, memo, createElement } from "react";
-import { GoogleMap, LoadScript, MarkerF, InfoWindowF } from "@react-google-maps/api";
+import { useEffect, useRef, useState } from "react";
+import { GoogleMap, LoadScript } from "@react-google-maps/api";
 import { PositionData } from "../types";
-// import StoreMarker from "./StoreMarker"
-
+import StoreMarker from "./StoreMarker"
+import StoreInfo from "./StoreInfo";
 
 const positions: PositionData[] = [
     {
@@ -63,7 +63,6 @@ const StoreLocator = (): JSX.Element => {
     // saving which position is clicked
     const onSelect = (item: PositionData | null): void => {
         setSelected(item);
-
     };
 
     useEffect((): void => {
@@ -82,32 +81,25 @@ const StoreLocator = (): JSX.Element => {
                 center={positions[locationIndex].location}
                 zoom={16}
             >
-
-                {selected?.location && (
-                    <InfoWindowF
-                        position={selected.location}
-                        options={infoWindowOptions}
-                        onCloseClick={() => onSelect(null)}
-                    >
-                        <div className="info-container">
-                            <a href={selected.link} target="_blank" rel="noreferrer">
-                                <h1>{selected.title}</h1>
-                                <p>{selected.description}</p>
-                            </a>
-                            <span className="review-holder">
-                                <span className="review">
-                                    {Array.from(Array(selected.stars), (i, key) => {
-                                        return createElement("span", { key: key });
-                                    })}
-                                </span>
-                            </span>
+                {
+                    positions?.map((i, key) => (
+                        <div key={key}>
+                            <StoreMarker data={{ info: i, key: key, onSelect: onSelect }} />
                         </div>
-                    </InfoWindowF>
-                )}
-
+                    ))
+                }
+                {
+                    <StoreInfo data={
+                        {
+                            selected: selected,
+                            infoWindowOptions: infoWindowOptions,
+                            onSelect: onSelect
+                        }
+                    } />
+                }
             </GoogleMap>
         </LoadScript >
     );
 };
 
-export default memo(StoreLocator);
+export default StoreLocator;
